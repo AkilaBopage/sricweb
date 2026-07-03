@@ -14,7 +14,12 @@ app.use(express.json());
 // Contact API
 app.post("/api/contact", async (req, res) => {
   try {
+    console.log("🔥 REQUEST RECEIVED");
+    console.log(req.body);
+
     const { name, email, subject, message } = req.body;
+
+    console.log("🔥 EMAIL USER:", process.env.EMAIL_USER);
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -24,32 +29,25 @@ app.post("/api/contact", async (req, res) => {
       },
     });
 
+    console.log("🔥 SENDING EMAIL...");
+
     await transporter.sendMail({
-      from: `"Website Contact" <${process.env.EMAIL_USER}>`,
+      from: `"Test" <${process.env.EMAIL_USER}>`,
       replyTo: email,
       to: process.env.EMAIL_USER,
       subject: subject,
-      html: `
-        <h2>New Contact Message</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Message:</b> ${message}</p>
-      `,
+      html: `<p>${message}</p>`,
     });
 
-    return res.status(200).json({ success: true });
+    console.log("✅ EMAIL SENT");
+
+    return res.json({ success: true });
 
   } catch (error) {
-    console.log("EMAIL ERROR:", error);
-
-    return res.status(500).json({
-      success: false,
-      message: "Failed to send email",
-      error: error.message,
-    });
+    console.log("❌ ERROR:", error);
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
-
 // Server
 const PORT = process.env.PORT || 5000;
 
