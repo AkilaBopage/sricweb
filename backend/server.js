@@ -13,19 +13,19 @@ app.use(express.json());
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.get("/", (req, res) => {
-  res.send("Backend running with Resend ✅");
+  res.send("Backend running ✅");
 });
 
 app.post("/api/contact", async (req, res) => {
-  console.log("🔥 REQUEST RECEIVED");
-  console.log(req.body);
-
   try {
     const { name, email, subject, message } = req.body;
 
+    console.log("🔥 REQUEST:", req.body);
+
     const result = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: process.env.EMAIL_TO,
+      from: "Contact Form <onboarding@resend.dev>", // required
+      to: [process.env.EMAIL_TO], // YOUR REAL EMAIL
+      replyTo: email, // USER EMAIL (important)
       subject: subject || "New Contact Message",
       html: `
         <h2>New Message</h2>
