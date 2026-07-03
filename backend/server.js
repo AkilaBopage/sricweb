@@ -7,11 +7,11 @@ dotenv.config();
 
 const app = express();
 
-//app.use(cors({
+/*app.use(cors({
   origin: "https://sricweb-58f5ob76q-akilabopages-projects.vercel.app",
   methods: ["GET", "POST"],
   credentials: true
-//});
+});*/
 app.use(cors());
 app.use(express.json());
 
