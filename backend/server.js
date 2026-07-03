@@ -1,3 +1,17 @@
+import express from "express";
+import nodemailer from "nodemailer";
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Contact API
 app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
@@ -30,8 +44,15 @@ app.post("/api/contact", async (req, res) => {
 
     return res.status(500).json({
       success: false,
-      message: "Email failed",
-      error: error.message
+      message: "Failed to send email",
+      error: error.message,
     });
   }
+});
+
+// Server
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
