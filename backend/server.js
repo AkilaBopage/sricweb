@@ -1,24 +1,7 @@
-import express from "express";
-import nodemailer from "nodemailer";
-import cors from "cors";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const app = express();
-
-/*app.use(cors({
-  origin: "https://sricweb-58f5ob76q-akilabopages-projects.vercel.app",
-  methods: ["GET", "POST"],
-  credentials: true
-});*/
-app.use(cors());
-app.use(express.json());
-
 app.post("/api/contact", async (req, res) => {
-  const { name, email, subject, message } = req.body;
-
   try {
+    const { name, email, subject, message } = req.body;
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -28,7 +11,8 @@ app.post("/api/contact", async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: email,
+      from: `"Website Contact" <${process.env.EMAIL_USER}>`,
+      replyTo: email,
       to: process.env.EMAIL_USER,
       subject: subject,
       html: `
@@ -39,15 +23,15 @@ app.post("/api/contact", async (req, res) => {
       `,
     });
 
-    res.json({ success: true });
+    return res.status(200).json({ success: true });
+
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false });
+    console.log("EMAIL ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Email failed",
+      error: error.message
+    });
   }
-});
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
 });
