@@ -1,7 +1,5 @@
 # Dependencies
 node_modules/
-backend/node_modules/
-frontend/node_modules/
 
 # Environment and secrets
 .env
@@ -16,15 +14,18 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Build and cache
+# Runtime/process files
+pids/
+*.pid
+*.pid.lock
+
+# Build / coverage
 dist/
 build/
 coverage/
-.cache/
 
 # OS / editor files
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-
