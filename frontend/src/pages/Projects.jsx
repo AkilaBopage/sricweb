@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PageHero from "../components/sections/PageHero";
+import FilterBar from "../components/ui/FilterBar";
+import InfoCard from "../components/ui/InfoCard";
 
 export default function Projects() {
   const navigate = useNavigate();
@@ -48,42 +51,19 @@ export default function Projects() {
   return (
     <>
       {/* HERO */}
-      <section
-        className="text-white d-flex align-items-center"
+      <PageHero
+        title="Strategic Projects That Shape Economies"
+        subtitle="Explore high-value infrastructure, energy, and transport investments across Sri Lanka and global markets."
+        className="text-white"
+        contentClassName="col-lg-7"
         style={{
-           
           minHeight: "80vh",
           backgroundImage:
             "linear-gradient(rgba(5,10,25,.78),rgba(5,10,25,.78)),url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2200&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      >
-        <div className="container">
-
-          <div className="row align-items-center">
-
-            <div className="col-lg-7">
-
-              <span className="badge bg-warning text-dark px-3 py-2 mb-3">
-              
-              </span>
-
-              <h1 className="display-3 fw-bold">
-                Strategic Projects That Shape Economies
-              </h1>
-
-              <p className="lead mt-4">
-                Explore high-value infrastructure, energy, and transport
-                investments across Sri Lanka and global markets.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section>
+      />
 
       {/* KPI STRIP */}
       <section className="bg-dark text-white py-4">
@@ -124,60 +104,15 @@ export default function Projects() {
 <section className="py-4 border-bottom bg-white sticky-top" style={{ top: "70px", zIndex: 10 }}>
   <div className="container text-center">
 
-    <div
-      className="d-inline-flex gap-2 p-2 rounded-4 shadow-sm"
-      style={{
-        background: "#f8f9fa",
-        border: "1px solid #e9ecef",
-      }}
-    >
-
-      {/* ALL */}
-      <button
-        onClick={() => setActive("all")}
-        className={`btn px-4 py-2 rounded-3 fw-semibold ${
-          active === "all"
-            ? "btn-dark"
-            : "btn-light border"
-        }`}
-        style={{
-          transition: "0.3s",
-        }}
-      >
-        All
-      </button>
-
-      {/* SRI LANKA */}
-      <button
-        onClick={() => setActive("Sri Lanka")}
-        className={`btn px-4 py-2 rounded-3 fw-semibold ${
-          active === "Sri Lanka"
-            ? "btn-dark"
-            : "btn-light border"
-        }`}
-        style={{
-          transition: "0.3s",
-        }}
-      >
-        Sri Lanka
-      </button>
-
-      {/* GLOBAL */}
-      <button
-        onClick={() => setActive("Global")}
-        className={`btn px-4 py-2 rounded-3 fw-semibold ${
-          active === "Global"
-            ? "btn-dark"
-            : "btn-light border"
-        }`}
-        style={{
-          transition: "0.3s",
-        }}
-      >
-        Global
-      </button>
-
-    </div>
+    <FilterBar
+      options={[
+        { label: "All", value: "all" },
+        { label: "Sri Lanka", value: "Sri Lanka" },
+        { label: "Global", value: "Global" },
+      ]}
+      activeValue={active}
+      onChange={setActive}
+    />
 
   </div>
 </section>
@@ -245,46 +180,18 @@ export default function Projects() {
 
             {filtered.map((p, i) => (
               <div className="col-lg-4" key={i}>
-
-                <div
-                  className="card border-0 shadow h-100 project-card"
-                  style={{
-                    transition: "0.3s",
-                    cursor: "pointer",
-                  }}
+                <InfoCard
+                  title={p.title}
+                  description={`Status: ${p.status}`}
+                  image={p.image}
+                  alt={p.title}
+                  imageStyle={{ height: "240px", objectFit: "cover" }}
+                  className="project-card"
+                  bodyClassName=""
                 >
-
-                  <img
-                    src={p.image}
-                    className="card-img-top"
-                    style={{
-                      height: "240px",
-                      objectFit: "cover",
-                    }}
-                  />
-
-                  <div className="card-body">
-
-                    <span className="badge bg-dark">
-                      {p.type}
-                    </span>
-
-                    <h5 className="fw-bold mt-2">
-                      {p.title}
-                    </h5>
-
-                    <p className="text-muted mb-0">
-                      Status: {p.status}
-                    </p>
-
-                    <p className="text-primary fw-bold">
-                      {p.value}
-                    </p>
-
-                  </div>
-
-                </div>
-
+                  <span className="badge bg-dark">{p.type}</span>
+                  <p className="text-primary fw-bold mt-2">{p.value}</p>
+                </InfoCard>
               </div>
             ))}
 

@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import PageHero from "../components/sections/PageHero";
+import SectionHeader from "../components/ui/SectionHeader";
 
 export default function About() {
   const navigate = useNavigate();
@@ -29,29 +31,20 @@ export default function About() {
   return (
     <>
       {/* HERO (Different style from Home) */}
-      <section
-        className="text-white d-flex align-items-center"
+      <PageHero
+        title="Who We Are"
+        subtitle="A strategic investment company focused on building long-term value through infrastructure, transportation, energy, and global partnerships."
+        className="text-white"
+        containerClassName="container text-center"
+        titleClassName="display-3 fw-bold"
         style={{
-          
           minHeight: "80vh",
           backgroundImage:
             "linear-gradient(rgba(10,15,30,.75),rgba(10,15,30,.75)),url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      >
-        <div className="container text-center">
-          <h1 className="display-3 fw-bold">
-            Who We Are
-          </h1>
-
-          <p className="lead mt-4 mx-auto" style={{ maxWidth: "800px" }}>
-            A strategic investment company focused on building long-term
-            value through infrastructure, transportation, energy,
-            and global partnerships.
-          </p>
-        </div>
-      </section>
+      />
 
       {/* STORY SECTION */}
       <section className="py-5">
@@ -99,9 +92,7 @@ export default function About() {
       <section className="bg-light py-5">
         <div className="container">
 
-          <h2 className="text-center fw-bold mb-5">
-            Our Journey
-          </h2>
+          <SectionHeader title="Our Journey" className="mb-5" />
 
           <div className="row g-4">
 

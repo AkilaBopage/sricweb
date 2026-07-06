@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import PageHero from "../components/sections/PageHero";
+import SectionHeader from "../components/ui/SectionHeader";
+import InfoCard from "../components/ui/InfoCard";
 
 export default function Services() {
   const navigate = useNavigate();
@@ -33,10 +36,13 @@ export default function Services() {
   return (
     <>
       {/* HERO */}
-      <section
-        className="text-white d-flex align-items-center"
+      <PageHero
+        title="Our Services"
+        subtitle="Delivering high-impact investment solutions across infrastructure, energy, logistics, and global development projects."
+        className="text-white"
+        containerClassName="container text-center"
+        titleClassName="display-3 fw-bold"
         style={{
-           
           minHeight: "85vh",
           backgroundImage:
             "linear-gradient(rgba(10,15,35,.75),rgba(10,15,35,.75)),url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2000&q=80')",
@@ -44,40 +50,19 @@ export default function Services() {
           backgroundPosition: "center",
         }}
       >
-        <div className="container text-center">
-
-          <h1 className="display-3 fw-bold">
-            Our Services
-          </h1>
-
-          <p className="lead mt-4 mx-auto" style={{ maxWidth: "850px" }}>
-            Delivering high-impact investment solutions across infrastructure,
-            energy, logistics, and global development projects.
-          </p>
-
-          <button
-            className="btn btn-warning btn-lg mt-4 px-5"
-            onClick={() => navigate("/Projects")}
-          >
-            View Projects
-          </button>
-
-        </div>
-      </section>
+        <button className="btn btn-warning btn-lg mt-4 px-5" onClick={() => navigate("/Projects")}>
+          View Projects
+        </button>
+      </PageHero>
 
       {/* INTRO */}
       <section className="py-5">
         <div className="container text-center">
 
-          <h2 className="fw-bold">
-            Strategic Investment Services
-          </h2>
-
-          <p className="text-muted mt-3 mx-auto" style={{ maxWidth: "800px" }}>
-            We provide end-to-end investment solutions that combine financial
-            expertise, engineering capability, and global partnerships to
-            deliver successful large-scale projects.
-          </p>
+          <SectionHeader
+            title="Strategic Investment Services"
+            subtitle="We provide end-to-end investment solutions that combine financial expertise, engineering capability, and global partnerships to deliver successful large-scale projects."
+          />
 
         </div>
       </section>
@@ -96,28 +81,14 @@ export default function Services() {
 
               {/* IMAGE */}
               <div className="col-lg-6">
-                <img
-                  src={item.image}
-                  className="img-fluid rounded-4 shadow"
-                  alt={item.title}
-                />
+                <img src={item.image} className="img-fluid rounded-4 shadow" alt={item.title} />
               </div>
 
               {/* TEXT */}
               <div className="col-lg-6">
-
-                <h2 className="fw-bold">
-                  {item.title}
-                </h2>
-
-                <p className="text-muted mt-3">
-                  {item.desc}
-                </p>
-
-                <button className="btn btn-primary mt-2">
-                  Learn More
-                </button>
-
+                <InfoCard title={item.title} description={item.desc} className="border-0 shadow-none">
+                  <button className="btn btn-primary mt-2">Learn More</button>
+                </InfoCard>
               </div>
 
             </div>

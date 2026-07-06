@@ -1,12 +1,19 @@
+import PageHero from "../components/sections/PageHero";
+import SectionHeader from "../components/ui/SectionHeader";
+import InfoCard from "../components/ui/InfoCard";
+
 export default function GlobalProjects() {
   return (
     <>
 
       {/* HERO */}
-      <section
-        className="text-white d-flex align-items-center"
+      <PageHero
+        title="Global Investment Projects"
+        subtitle="Building sustainable international partnerships through infrastructure, transportation, renewable energy, logistics, industrial development and strategic investments."
+        className="text-white"
+        containerClassName="container text-center"
+        titleClassName="display-3 fw-bold"
         style={{
-           
           minHeight: "85vh",
           backgroundImage:
             "linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80')",
@@ -14,22 +21,10 @@ export default function GlobalProjects() {
           backgroundPosition: "center",
         }}
       >
-        <div className="container text-center">
-          <h1 className="display-3 fw-bold">
-            Global Investment Projects
-          </h1>
-
-          <p className="lead mt-4 mx-auto" style={{ maxWidth: "800px" }}>
-            Building sustainable international partnerships through
-            infrastructure, transportation, renewable energy, logistics,
-            industrial development and strategic investments.
-          </p>
-
-          <button className="btn btn-warning btn-lg px-5 mt-4">
-            Explore Opportunities
-          </button>
-        </div>
-      </section>
+        <button className="btn btn-warning btn-lg px-5 mt-4">
+          Explore Opportunities
+        </button>
+      </PageHero>
 
       {/* ABOUT */}
       <section className="py-5">
@@ -65,9 +60,7 @@ export default function GlobalProjects() {
       <section className="bg-light py-5">
         <div className="container">
 
-          <h2 className="text-center fw-bold mb-5">
-            Investment Sectors
-          </h2>
+          <SectionHeader title="Investment Sectors" className="mb-5" />
 
           <div className="row g-4">
 
@@ -80,15 +73,12 @@ export default function GlobalProjects() {
               "Technology"
             ].map((item, index) => (
               <div className="col-md-4" key={index}>
-                <div className="card border-0 shadow h-100">
-                  <div className="card-body text-center">
-                    <h4>{item}</h4>
-                    <p className="text-muted">
-                      Strategic international investments supporting
-                      long-term economic growth.
-                    </p>
-                  </div>
-                </div>
+                <InfoCard
+                  title={item}
+                  description="Strategic international investments supporting long-term economic growth."
+                  className="border-0 shadow h-100"
+                  bodyClassName="text-center"
+                />
               </div>
             ))}
 
@@ -100,60 +90,38 @@ export default function GlobalProjects() {
       <section className="py-5">
         <div className="container">
 
-          <h2 className="fw-bold text-center mb-5">
-            Featured Global Projects
-          </h2>
+          <SectionHeader title="Featured Global Projects" className="mb-5" />
 
           <div className="row g-4">
 
             <div className="col-lg-4">
-              <div className="card shadow h-100">
-                <img
-                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80"
-                  className="card-img-top"
-                  alt=""
-                />
-                <div className="card-body">
-                  <h4>Asia Transport Expansion</h4>
-                  <p>
-                    Cross-border logistics and transportation
-                    infrastructure.
-                  </p>
-                </div>
-              </div>
+              <InfoCard
+                title="Asia Transport Expansion"
+                description="Cross-border logistics and transportation infrastructure."
+                image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80"
+                alt=""
+                className="shadow h-100"
+              />
             </div>
 
             <div className="col-lg-4">
-              <div className="card shadow h-100">
-                <img
-                  src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=900&q=80"
-                  className="card-img-top"
-                  alt=""
-                />
-                <div className="card-body">
-                  <h4>European Infrastructure</h4>
-                  <p>
-                    Commercial developments and infrastructure
-                    partnerships.
-                  </p>
-                </div>
-              </div>
+              <InfoCard
+                title="European Infrastructure"
+                description="Commercial developments and infrastructure partnerships."
+                image="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=900&q=80"
+                alt=""
+                className="shadow h-100"
+              />
             </div>
 
             <div className="col-lg-4">
-              <div className="card shadow h-100">
-                <img
-                  src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80"
-                  className="card-img-top"
-                  alt=""
-                />
-                <div className="card-body">
-                  <h4>Renewable Energy</h4>
-                  <p>
-                    Sustainable solar and wind investment projects.
-                  </p>
-                </div>
-              </div>
+              <InfoCard
+                title="Renewable Energy"
+                description="Sustainable solar and wind investment projects."
+                image="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80"
+                alt=""
+                className="shadow h-100"
+              />
             </div>
 
           </div>

@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import SectionHeader from "../components/ui/SectionHeader";
+import InfoCard from "../components/ui/InfoCard";
+import StatsGrid from "../components/ui/StatsGrid";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -110,31 +113,15 @@ export default function Home() {
       <section className="bg-dark text-white py-4">
 
         <div className="container">
-
-          <div className="row text-center">
-
-            <div className="col-md-3">
-              <h3>20+</h3>
-              <small>Years Experience</small>
-            </div>
-
-            <div className="col-md-3">
-              <h3>50+</h3>
-              <small>Projects Delivered</small>
-            </div>
-
-            <div className="col-md-3">
-              <h3>15+</h3>
-              <small>Countries</small>
-            </div>
-
-            <div className="col-md-3">
-              <h3>100%</h3>
-              <small>Client Commitment</small>
-            </div>
-
-          </div>
-
+          <StatsGrid
+            items={[
+              { value: "20+", label: "Years Experience" },
+              { value: "50+", label: "Projects Delivered" },
+              { value: "15+", label: "Countries" },
+              { value: "100%", label: "Client Commitment" },
+            ]}
+            columnClassName="col-md-3"
+          />
         </div>
 
       </section>
@@ -195,44 +182,21 @@ export default function Home() {
 
         <div className="container">
 
-          <div className="text-center mb-5">
-
-            <span className="text-primary fw-bold">
-              WHAT WE DO
-            </span>
-
-            <h2 className="display-5 fw-bold">
-              Our Core Services
-            </h2>
-
-          </div>
+          <SectionHeader eyebrow="WHAT WE DO" title="Our Core Services" />
 
           <div className="row g-4">
 
             {services.map((service, index) => (
 
               <div className="col-lg-4" key={index}>
-
-                <div className="card border-0 shadow-lg h-100">
-
-                  <div className="card-body p-5 text-center">
-
-                    <i
-                      className={`bi ${service.icon} display-2 text-primary`}
-                    ></i>
-
-                    <h4 className="mt-4">
-                      {service.title}
-                    </h4>
-
-                    <p className="text-muted">
-                      {service.desc}
-                    </p>
-
-                  </div>
-
-                </div>
-
+                <InfoCard
+                  className="shadow-lg h-100 border-0"
+                  bodyClassName="p-5 text-center"
+                >
+                  <i className={`bi ${service.icon} display-2 text-primary`}></i>
+                  <h4 className="mt-4">{service.title}</h4>
+                  <p className="text-muted">{service.desc}</p>
+                </InfoCard>
               </div>
 
             ))}
@@ -277,32 +241,13 @@ export default function Home() {
             {projects.map((project, index) => (
 
               <div className="col-lg-4" key={index}>
-
-                <div className="card border-0 shadow h-100">
-
-                  <img
-                    src={project.image}
-                    className="card-img-top"
-                    style={{
-                      height: "260px",
-                      objectFit: "cover",
-                    }}
-                    alt=""
-                  />
-
-                  <div className="card-body">
-
-                    <h4>{project.title}</h4>
-
-                    <p className="text-muted">
-                      Strategic investment project designed for
-                      sustainable development.
-                    </p>
-
-                  </div>
-
-                </div>
-
+                <InfoCard
+                  title={project.title}
+                  description="Strategic investment project designed for sustainable development."
+                  image={project.image}
+                  alt={project.title}
+                  imageStyle={{ height: "260px", objectFit: "cover" }}
+                />
               </div>
 
             ))}

@@ -1,12 +1,19 @@
+import PageHero from "../components/sections/PageHero";
+import SectionHeader from "../components/ui/SectionHeader";
+import InfoCard from "../components/ui/InfoCard";
+
 export default function SriLankaProjects() {
   return (
     <>
 
       {/* HERO */}
-      <section
-        className="text-white d-flex align-items-center"
+      <PageHero
+        title="Sri Lanka Projects"
+        subtitle="Driving Sri Lanka's future through strategic investments in transportation, infrastructure, logistics, renewable energy, industrial development, and public-private partnerships."
+        className="text-white"
+        containerClassName="container text-center"
+        titleClassName="display-3 fw-bold"
         style={{
-           
           minHeight: "85vh",
           backgroundImage:
             "linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80')",
@@ -14,18 +21,10 @@ export default function SriLankaProjects() {
           backgroundPosition: "center",
         }}
       >
-        <div className="container text-center">
-          <h1 className="display-3 fw-bold">
-            Sri Lanka Projects
-          </h1>
-          <p className="lead mt-4 mx-auto" style={{ maxWidth: "800px" }}>
-            Driving Sri Lanka's future through strategic investments in transportation, infrastructure, logistics, renewable energy, industrial development, and public-private partnerships.
-          </p>
-          <button className="btn btn-warning btn-lg px-5 mt-4">
-            Explore Projects
-          </button>
-        </div>
-      </section>
+        <button className="btn btn-warning btn-lg px-5 mt-4">
+          Explore Projects
+        </button>
+      </PageHero>
 
       {/* ABOUT */}
       <section className="py-5">
@@ -53,9 +52,7 @@ export default function SriLankaProjects() {
       {/* SECTORS */}
       <section className="bg-light py-5">
         <div className="container">
-          <h2 className="text-center fw-bold mb-5">
-            Project Areas
-          </h2>
+          <SectionHeader title="Project Areas" className="mb-5" />
           <div className="row g-4">
             {[
               "Public Transportation",
@@ -66,14 +63,12 @@ export default function SriLankaProjects() {
               "Smart Cities"
             ].map((item, index) => (
               <div className="col-md-4" key={index}>
-                <div className="card border-0 shadow h-100">
-                  <div className="card-body text-center">
-                    <h4>{item}</h4>
-                    <p className="text-muted">
-                      Sustainable projects designed to strengthen Sri Lanka's economy and infrastructure.
-                    </p>
-                  </div>
-                </div>
+                <InfoCard
+                  title={item}
+                  description="Sustainable projects designed to strengthen Sri Lanka's economy and infrastructure."
+                  className="border-0 shadow h-100"
+                  bodyClassName="text-center"
+                />
               </div>
             ))}
           </div>
@@ -83,57 +78,37 @@ export default function SriLankaProjects() {
       {/* FEATURED PROJECTS */}
       <section className="py-5">
         <div className="container">
-          <h2 className="fw-bold text-center mb-5">
-            Featured Projects
-          </h2>
+          <SectionHeader title="Featured Projects" className="mb-5" />
           <div className="row g-4">
 
             <div className="col-lg-4">
-              <div className="card shadow h-100">
-                <img
-                  src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=80"
-                  className="card-img-top"
-                  alt="Modern bus"
-                />
-                <div className="card-body">
-                  <h4>National Bus Modernization</h4>
-                  <p>
-                    Developing safer, smarter, and more efficient public transportation systems.
-                  </p>
-                </div>
-              </div>
+              <InfoCard
+                title="National Bus Modernization"
+                description="Developing safer, smarter, and more efficient public transportation systems."
+                image="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=80"
+                alt="Modern bus"
+                className="shadow h-100"
+              />
             </div>
 
             <div className="col-lg-4">
-              <div className="card shadow h-100">
-                <img
-                  src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=900&q=80"
-                  className="card-img-top"
-                  alt="Solar panels"
-                />
-                <div className="card-body">
-                  <h4>Renewable Energy Projects</h4>
-                  <p>
-                    Investing in clean energy solutions for a sustainable future.
-                  </p>
-                </div>
-              </div>
+              <InfoCard
+                title="Renewable Energy Projects"
+                description="Investing in clean energy solutions for a sustainable future."
+                image="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=900&q=80"
+                alt="Solar panels"
+                className="shadow h-100"
+              />
             </div>
 
             <div className="col-lg-4">
-              <div className="card shadow h-100">
-                <img
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80"
-                  className="card-img-top"
-                  alt="High-rise buildings"
-                />
-                <div className="card-body">
-                  <h4>Commercial Infrastructure</h4>
-                  <p>
-                    Supporting industrial and commercial developments throughout Sri Lanka.
-                  </p>
-                </div>
-              </div>
+              <InfoCard
+                title="Commercial Infrastructure"
+                description="Supporting industrial and commercial developments throughout Sri Lanka."
+                image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80"
+                alt="High-rise buildings"
+                className="shadow h-100"
+              />
             </div>
 
           </div>

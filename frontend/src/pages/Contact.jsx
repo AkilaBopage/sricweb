@@ -1,4 +1,6 @@
 import { useState } from "react";
+import PageHero from "../components/sections/PageHero";
+import ContactForm from "../components/forms/ContactForm";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -45,7 +47,7 @@ export default function Contact() {
       } else {
         alert("Something went wrong. Try again.");
       }
-    } catch (error) {
+    } catch {
       alert("Server error. Check backend connection.");
     }
 
@@ -55,24 +57,20 @@ export default function Contact() {
   return (
     <>
       {/* HERO */}
-      <section
-        className="text-white d-flex align-items-center"
+      <PageHero
+        title="Contact Us"
+        subtitle="Let’s discuss investment opportunities and partnerships."
+        className="text-white"
+        containerClassName="container text-center"
+        titleClassName="display-4 fw-bold"
         style={{
-           
           minHeight: "50vh",
           backgroundImage:
             "linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      >
-        <div className="container text-center">
-          <h1 className="display-4 fw-bold">Contact Us</h1>
-          <p className="lead mt-3">
-            Let’s discuss investment opportunities and partnerships.
-          </p>
-        </div>
-      </section>
+      />
 
       {/* CONTACT SECTION */}
       <section className="py-5">
@@ -83,71 +81,13 @@ export default function Contact() {
             {/* FORM */}
             <div className="col-lg-7">
 
-              <div className="card shadow border-0 p-4">
-
-                <h3 className="fw-bold mb-3">
-                  Send Us a Message
-                </h3>
-
-                {success && (
-                  <div className="alert alert-success">
-                    Message sent successfully!
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit}>
-
-                  <input
-                    type="text"
-                    name="name"
-                    className="form-control mb-3"
-                    placeholder="Your Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                  />
-
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control mb-3"
-                    placeholder="Your Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-
-                  <input
-                    type="text"
-                    name="subject"
-                    className="form-control mb-3"
-                    placeholder="Subject"
-                    value={form.subject}
-                    onChange={handleChange}
-                    required
-                  />
-
-                  <textarea
-                    name="message"
-                    className="form-control mb-3"
-                    rows="5"
-                    placeholder="Your Message"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                  />
-
-                  <button
-                    type="submit"
-                    className="btn btn-primary w-100"
-                    disabled={loading}
-                  >
-                    {loading ? "Sending..." : "Send Message"}
-                  </button>
-
-                </form>
-
-              </div>
+              <ContactForm
+                form={form}
+                loading={loading}
+                success={success}
+                onChange={handleChange}
+                onSubmit={handleSubmit}
+              />
 
             </div>
 
